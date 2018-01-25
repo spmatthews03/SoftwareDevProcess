@@ -21,35 +21,48 @@ public class MyCustomStringTest {
         mycustomstring = null;
     }
 
+
+    // Test supplied by professor
     @Test
     public void testCountNumbers1() {
         mycustomstring.setString("H3y, l3t'5 put s0me d161ts in this 5tr1n6!11!!");
         assertEquals(9, mycustomstring.countNumbers());
     }
 
+    // Testing one complete multi digit number
     @Test
     public void testCountNumbers2() {
-        fail("Not yet implemented");
+        mycustomstring.setString("123456");
+        assertEquals(1, mycustomstring.countNumbers());
     }
 
+    // Testing a string like the one supplied
     @Test
     public void testCountNumbers3() {
-        fail("Not yet implemented");
+        mycustomstring.setString("W3 are Te5t1ng this meth0d");
+        assertEquals(4, mycustomstring.countNumbers());
     }
 
+
+    // Test with NO digits
     @Test
     public void testCountNumbers4() {
-        fail("Not yet implemented");
+        mycustomstring.setString("There should be no numbers in this string!");
+        assertEquals(0, mycustomstring.countNumbers());
     }
 
+    // Testing special characters, but expecting no #'s
     @Test
     public void testCountNumbers5() {
-        fail("Not yet implemented");
+        mycustomstring.setString("$#&*#&$*#(@(@(#*$&%");
+        assertEquals(0, mycustomstring.countNumbers());
     }
 
+    // Testing a string with multiple numbers and digits
     @Test
     public void testCountNumbers6() {
-        fail("Not yet implemented");
+        mycustomstring.setString("I 5upp063 I can t35t 1 m0r3");
+        assertEquals(6, mycustomstring.countNumbers());
     }
 
     @Test

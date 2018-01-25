@@ -27,7 +27,7 @@ public class MyCustomString implements MyCustomStringInterface {
                 num++;
                 prev = true;
             }
-            else{
+            else if(!Character.isDigit(string.charAt(i))){
                 prev = false;
             }
         }
@@ -73,7 +73,7 @@ public class MyCustomString implements MyCustomStringInterface {
         if(endPosition > tmpString.length())
             throw new MyIndexOutOfBoundsException("End Position is larger then length of the string");
 
-        for(int i = 0; i < tmpString.length(); i++ ){
+        for(int i = startPosition; i <= endPosition; i++ ){
             if(Character.isAlphabetic(tmpString.charAt(i))) {
                 int asci = (int) tmpString.charAt(i);
                 int newAsci = asci + 1;
