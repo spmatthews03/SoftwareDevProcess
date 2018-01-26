@@ -51,7 +51,16 @@ public class MyCustomString implements MyCustomStringInterface {
                 tmp = Integer.parseInt(tmpString.valueOf(tmpString.charAt(i)));
                 tmp = tmp + n;
                 if( tmp > 9) {
-                    tmp = tmp % 9;
+                    if(wrap)
+                        tmp = tmp % 9;
+                    else
+                        tmp = 9;
+                }
+                else if(tmp < 0){
+                    if(wrap)
+                        tmp += 10;
+                    else
+                        tmp = 0;
                 }
                 tmpString = tmpString.substring(0,i) + tmp +tmpString.substring(i+1);
             }
@@ -62,21 +71,23 @@ public class MyCustomString implements MyCustomStringInterface {
 
     @Override
     public void convertLettersToDigitsInSubstring(int startPosition, int endPosition) throws NullPointerException,
-            IllegalArgumentException, MyIndexOutOfBoundsException {
+            MyIndexOutOfBoundsException, IllegalArgumentException  {
         String tmpString = this.string;
         String buildString = "";
 
         if(tmpString == null)
             throw new NullPointerException("String is null");
-        if(startPosition < 1 || endPosition < startPosition)
-            throw new IllegalArgumentException(" Invalid Start Position");
         if(endPosition > tmpString.length())
             throw new MyIndexOutOfBoundsException("End Position is larger then length of the string");
+        if(startPosition < 1 || endPosition < startPosition)
+            throw new IllegalArgumentException(" Invalid Start Position");
 
-        for(int i = startPosition; i <= endPosition; i++ ){
+        this.string = tmpString.substring(0,startPosition - 1);
+
+        for(int i = startPosition - 1; i < endPosition; i++ ){
             if(Character.isAlphabetic(tmpString.charAt(i))) {
-                int asci = (int) tmpString.charAt(i);
-                int newAsci = asci + 1;
+                int asci = (int) tmpString.toLowerCase().charAt(i);
+                int newAsci = asci - 'a' + 1;
 
                 if(newAsci > 9)
                     buildString = buildString + newAsci;
@@ -87,6 +98,8 @@ public class MyCustomString implements MyCustomStringInterface {
                 buildString = buildString + tmpString.charAt(i);
             }
         }
+
+        this.string = this.string + buildString + tmpString.substring(endPosition);
 
 
     }

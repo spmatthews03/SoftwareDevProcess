@@ -147,19 +147,23 @@ public class MyCustomStringTest {
         mycustomstring.convertLettersToDigitsInSubstring(200, 100);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testConvertLettersToDigitsInSubstring4() {
-        fail("Not yet implemented");
+        mycustomstring.setString("H3y, l3t'5 put 50me D161ts in this 5tr1n6!11!!");
+        mycustomstring.convertLettersToDigitsInSubstring(200, 10);
     }
 
     @Test
     public void testConvertLettersToDigitsInSubstring5() {
-        fail("Not yet implemented");
+        mycustomstring.setString("L3Ts try this one!");
+        mycustomstring.convertLettersToDigitsInSubstring(1, 2);
+        assertEquals("123Ts try this one!", mycustomstring.getString());
     }
 
-    @Test
+    @Test(expected = MyIndexOutOfBoundsException.class)
     public void testConvertLettersToDigitsInSubstring6() {
-        fail("Not yet implemented");
+        mycustomstring.setString("A");
+        mycustomstring.convertLettersToDigitsInSubstring(1,3);
     }
 
     @Test
