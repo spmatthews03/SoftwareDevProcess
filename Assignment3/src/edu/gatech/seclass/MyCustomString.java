@@ -22,12 +22,12 @@ public class MyCustomString implements MyCustomStringInterface {
         int num = 0;
         boolean prev = false;
 
-        for( int i = 0; i < string.length(); i++){
-            if(Character.isDigit(string.charAt(i)) && !prev){
+        for( int i = 0; i < getString().length(); i++){
+            if(Character.isDigit(getString().charAt(i)) && !prev){
                 num++;
                 prev = true;
             }
-            else if(!Character.isDigit(string.charAt(i))){
+            else if(!Character.isDigit(getString().charAt(i))){
                 prev = false;
             }
         }
@@ -38,10 +38,10 @@ public class MyCustomString implements MyCustomStringInterface {
     @Override
     public String increaseDigits(int n, boolean wrap) throws NullPointerException, IllegalArgumentException{
         // throw checks
-        String tmpString = this.string;
+        String tmpString = getString();
         if(tmpString == null)
             throw new NullPointerException("String is null");
-        if(n > Math.abs(n))
+        if(9 < Math.abs(n))
             throw new IllegalArgumentException("Number passed in cannot be greater than 9 or less than -9.");
 
         int tmp;
@@ -52,7 +52,7 @@ public class MyCustomString implements MyCustomStringInterface {
                 tmp = tmp + n;
                 if( tmp > 9) {
                     if(wrap)
-                        tmp = tmp % 9;
+                        tmp = tmp % 9 - 1;
                     else
                         tmp = 9;
                 }
@@ -72,9 +72,11 @@ public class MyCustomString implements MyCustomStringInterface {
     @Override
     public void convertLettersToDigitsInSubstring(int startPosition, int endPosition) throws NullPointerException,
             MyIndexOutOfBoundsException, IllegalArgumentException  {
-        String tmpString = this.string;
+
+        String tmpString = getString();
         String buildString = "";
 
+        // Exception Handling
         if(tmpString == null)
             throw new NullPointerException("String is null");
         if(endPosition > tmpString.length())
@@ -82,11 +84,12 @@ public class MyCustomString implements MyCustomStringInterface {
         if(startPosition < 1 || endPosition < startPosition)
             throw new IllegalArgumentException(" Invalid Start Position");
 
-        this.string = tmpString.substring(0,startPosition - 1);
+        setString(tmpString.substring(0,startPosition - 1));
 
         for(int i = startPosition - 1; i < endPosition; i++ ){
             if(Character.isAlphabetic(tmpString.charAt(i))) {
                 int asci = (int) tmpString.toLowerCase().charAt(i);
+                // calculate digit for number
                 int newAsci = asci - 'a' + 1;
 
                 if(newAsci > 9)
@@ -99,8 +102,7 @@ public class MyCustomString implements MyCustomStringInterface {
             }
         }
 
-        this.string = this.string + buildString + tmpString.substring(endPosition);
-
+        setString(getString() + buildString + tmpString.substring(endPosition));
 
     }
 }

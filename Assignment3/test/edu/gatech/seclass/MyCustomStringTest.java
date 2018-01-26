@@ -65,69 +65,91 @@ public class MyCustomStringTest {
         assertEquals(6, mycustomstring.countNumbers());
     }
 
+    // Test provided by instructor
     @Test
     public void testIncreaseDigits1() {
         mycustomstring.setString("H3y, l3t'5 put 50me d161ts in this 5tr1n6!11!!");
         assertEquals("H7y, l7t'9 put 94me d595ts in this 9tr5n9!55!!", mycustomstring.increaseDigits(4, false));
     }
 
+    // Test provided by instructor
     @Test
     public void testIncreaseDigits2() {
         mycustomstring.setString("H3y, l3t'5 put 50me d161ts in this 5tr1n6!11!!");
         assertEquals("H9y, l9t'1 put 16me d727ts in this 1tr7n2!77!!", mycustomstring.increaseDigits(-4, true));
     }
 
+    // Basic test to see wrapping Positive #s
     @Test
     public void testIncreaseDigits3() {
-        fail("Not yet implemented");
+        mycustomstring.setString("12345");
+        assertEquals("89012", mycustomstring.increaseDigits(7, true));
     }
 
+    // Basic test to see no wrapping Positive #s
     @Test
     public void testIncreaseDigits4() {
-        fail("Not yet implemented");
+        mycustomstring.setString("12345");
+        assertEquals("89999", mycustomstring.increaseDigits(7, false));
     }
 
-    @Test
+    // Test to see if null pointer excpetion is thrown
+    @Test(expected = NullPointerException.class)
     public void testIncreaseDigits5() {
-        fail("Not yet implemented");
+        MyCustomString string = new MyCustomString();
+        mycustomstring.increaseDigits(-6, true);
     }
 
+    // Test no wrapping with negative numbers
     @Test
     public void testIncreaseDigits6() {
-        fail("Not yet implemented");
+        mycustomstring.setString("T35t 5 w0rk3d th3 f1r5t t1m3");
+        assertEquals("T00t 0 w0rk0d th0 f0r0t t0m0", mycustomstring.increaseDigits(-9, false));
     }
 
+    // Additional test for no wrapping with positive numbers
     @Test
     public void testIncreaseDigits7() {
-        fail("Not yet implemented");
+        mycustomstring.setString("9999999998");
+        assertEquals("9999999999", mycustomstring.increaseDigits(4, false));
     }
 
-    @Test
+    // Test to see if illegalArgument excpetion is thrown
+    @Test(expected = IllegalArgumentException.class)
     public void testIncreaseDigits8() {
-        fail("Not yet implemented");
+        mycustomstring.setString("1111111");
+        mycustomstring.increaseDigits(-10, false);
     }
 
+    // Test for no digits
     @Test
     public void testIncreaseDigits9() {
-        fail("Not yet implemented");
+        mycustomstring.setString("Boundary Conditions");
+        assertEquals("Boundary Conditions", mycustomstring.increaseDigits(-3, true));
     }
 
+    // Another test for wrapping with positive
     @Test
     public void testIncreaseDigits10() {
-        fail("Not yet implemented");
+        mycustomstring.setString("945643");
+        assertEquals("389087", mycustomstring.increaseDigits(4, true));
     }
 
+    // Test for wrapping but adding nothing
     @Test
     public void testIncreaseDigits11() {
-        fail("Not yet implemented");
+        mycustomstring.setString("L00ks L1k3 They work");
+        assertEquals("L00ks L1k3 They work", mycustomstring.increaseDigits(0, true));
     }
 
+    // Test for wrapping and negative numbers
     @Test
     public void testIncreaseDigits12() {
-        fail("Not yet implemented");
+        mycustomstring.setString("Testing is C0mplete");
+        assertEquals("Testing is C3mplete", mycustomstring.increaseDigits(-7, true));
     }
 
-
+    // Provided by instructor
     @Test
     public void testConvertLettersToDigitsInSubstring1() {
         mycustomstring.setString("H3y, l3t'5 put 50me D161ts in this 5tr1n6!11!!");
@@ -135,24 +157,28 @@ public class MyCustomStringTest {
         assertEquals("H3y, l3t'5 put 50m05 041612019 09n this 5tr1n6!11!!", mycustomstring.getString());
     }
 
+    // provided by instructor
     @Test(expected = NullPointerException.class)
     public void testConvertLettersToDigitsInSubstring2() {
         MyCustomString string = new MyCustomString();
         mycustomstring.convertLettersToDigitsInSubstring(200, 100);
     }
 
+    // provided by instructor
     @Test(expected = MyIndexOutOfBoundsException.class)
     public void testConvertLettersToDigitsInSubstring3() {
         mycustomstring.setString("H3y, l3t'5 put 50me D161ts in this 5tr1n6!11!!");
         mycustomstring.convertLettersToDigitsInSubstring(200, 100);
     }
 
+    // Test to see if illegalargument excpetion is thrown
     @Test(expected = IllegalArgumentException.class)
     public void testConvertLettersToDigitsInSubstring4() {
         mycustomstring.setString("H3y, l3t'5 put 50me D161ts in this 5tr1n6!11!!");
         mycustomstring.convertLettersToDigitsInSubstring(200, 10);
     }
 
+    // Basic test converting first digits
     @Test
     public void testConvertLettersToDigitsInSubstring5() {
         mycustomstring.setString("L3Ts try this one!");
@@ -160,30 +186,42 @@ public class MyCustomStringTest {
         assertEquals("123Ts try this one!", mycustomstring.getString());
     }
 
+    // Testing that myIndexoutofBoundexception is thrown
     @Test(expected = MyIndexOutOfBoundsException.class)
     public void testConvertLettersToDigitsInSubstring6() {
         mycustomstring.setString("A");
         mycustomstring.convertLettersToDigitsInSubstring(1,3);
     }
 
+    // Testing all but one Digit
     @Test
     public void testConvertLettersToDigitsInSubstring7() {
-        fail("Not yet implemented");
+            mycustomstring.setString("10202938478B0432");
+            mycustomstring.convertLettersToDigitsInSubstring(1,16);
+            assertEquals("10202938478020432", mycustomstring.getString());
     }
 
+    // Testing upper and lowercase letters
     @Test
     public void testConvertLettersToDigitsInSubstring8() {
-        fail("Not yet implemented");
+        mycustomstring.setString("aAbBcCdD");
+        mycustomstring.convertLettersToDigitsInSubstring(1,8);
+        assertEquals("0101020203030404", mycustomstring.getString());
     }
 
+    // Testing just the first letter in string
     @Test
     public void testConvertLettersToDigitsInSubstring9() {
-        fail("Not yet implemented");
+        mycustomstring.setString("Test #9");
+        mycustomstring.convertLettersToDigitsInSubstring(1,1);
+        assertEquals("20est #9", mycustomstring.getString());
     }
 
-    @Test
+    // Testing to see if illegal argument excpetion is thrown
+    @Test(expected = IllegalArgumentException.class)
     public void testConvertLettersToDigitsInSubstring10() {
-        fail("Not yet implemented");
+        mycustomstring.setString("One last error Test");
+        mycustomstring.convertLettersToDigitsInSubstring(2, 1);
     }
 
 }
