@@ -1,0 +1,60 @@
+# File
+Size:
+	Empty.				[single][property emptyfile]
+	Not empty.					
+Number of lines outputted:
+	None.				[single][if !emptyfile] 
+	One.						[if !emptyfile]
+	Many.						[if !emptyfile]
+
+
+# String
+Presence of string:
+	Not present.			
+	Present.				[property stringPresent]
+
+Length of string:
+    0.            [property zero]
+    >0.						
+
+Content:
+  alphanumeric characters.  [if !zero]
+
+
+# Input size
+
+  Value:
+    0.
+    >0.
+    <0.                       [error]
+    maxint.                   [single]
+
+
+# Delimiter
+Presence of delimiter:
+	Not present.		
+	Present.					[property delimiterPresent]
+
+
+In quotes ("asap"):
+	In Quotes.			[if delimiterPresent]
+	No Quotes.			[if delimiterPresent]
+
+Special characters (><*|&):
+	Escaped.			
+	Not escaped.		[error]			
+Lines printed in full?:
+	Yes.				[single][if !delimiterPresent] 
+	No.							[if !delimiterPresent] [error]
+Delimiter length:
+	None.				[single][if delimiterPresent]
+	One.				[single][if delimiterPresent]
+	More than one.			[if delimiterPresent]
+
+
+
+
+# Filename
+Presence of a file corresponding to the name:
+	Not present.		[error]
+	Present. 
