@@ -1,0 +1,72 @@
+# String
+Presence of string:
+	Not present.		[property noString]
+	Present.				
+
+Length of string:
+    0.            [if !noString][error]
+    1.						[single][if !noString]
+		More than one. [if !noString][property length]
+
+Content:
+	Only Letters			[if !noString]
+  alphanumeric characters.  [single][if !noString]
+In Quotes:
+	Yes.     [if !noString]
+	No. 		
+	Incorrect [error]
+Special characters (><*|&):
+	Present.    [single][if !noString]
+	Not Present			[if !noString]
+
+
+# File
+Size:
+	Empty.				[single][property emptyfile]
+	Not empty.					
+Number of lines outputted:
+	One.						[if !emptyfile]
+	Many.						[if !emptyfile]
+Number of times String shows up:
+	None.			[single][if !emptyfile && !noString][property noTimes]
+	One.			[if !emptyfile && !noString]
+	Many.			[if !emptyfile && !noString]
+
+
+
+
+
+# Delimiter
+Presence of delimiter:
+	Not present.		
+	Present.					[property delimiterPresent]
+In quotes ("asap"):
+	In Quotes.			[if delimiterPresent]
+	No Quotes.			[if delimiterPresent]
+Special characters (><*|&):
+	Present.			[single]
+	Not Present.					
+Fully printed lines?:
+	Yes.				[single][if !delimiterPresent] 
+	No.							[if !delimiterPresent] [error]
+Delimiter length:
+	None.				[single][if delimiterPresent]
+	One.				[single][if delimiterPresent]
+	More than one.			[if delimiterPresent]
+
+
+
+
+# Filename
+Presence of a file corresponding to the name:
+	Not present.		[error]
+	Present. 
+
+#Flip Flag
+Presence of this flag for flipping:
+	Present 
+	Not Present				[property noFlip]
+Is Last Flag:
+	Yes					
+	No					[error]
+
