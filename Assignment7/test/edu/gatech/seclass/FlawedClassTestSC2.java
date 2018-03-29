@@ -6,9 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
-public class FlawedClassTestSC1 {
+public class FlawedClassTestSC2 {
 
     private FlawedClass flawedClass;
 
@@ -23,11 +22,10 @@ public class FlawedClassTestSC1 {
     }
 
 
-    // Test supplied by professor
     @Test
-    public void testCoverageTask1() {
+    public void test2CoverageTask1() {
         //flawedClass.testCoverageTask1(1,5);
-        assertEquals(5, flawedClass.flawedMethod1(0,5));
+        assertEquals(1, flawedClass.flawedMethod2(true));
     }
 
 

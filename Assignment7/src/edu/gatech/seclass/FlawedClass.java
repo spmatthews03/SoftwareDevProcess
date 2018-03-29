@@ -4,38 +4,44 @@ public class FlawedClass {
 
 
 
-    public int flawedMethod1(boolean a, boolean b){
+    public void flawedMethod1(boolean a, boolean b){
 
-        int x = 1;
+        // This case is impossible. It is impossible to have 100% branch coverage that doesn't reveal the fault, and
+        // have every test suit that achieves a 100% statement coverage that reveals a fault. This is because
+        // 100% branch coverage would include the test case with the statement coverage. Branch is more thorough
+        // then statement testing
 
-        if(a == true)
-        {
-            x = x  + 1;
-        }
-        if(b == true)
-        {
-            x = 10;
-        }
-        else
-        {
-            x = x - 2;
-        }
 
-        return 1 / x;
     }
 
-    public int flawedMethod2(boolean a, boolean b){
+    public int flawedMethod2(boolean a){
 
+        int i = 0;
 
+        if(a)
+            i = 1;
+
+        return 1/i;
     }
 
     public int flawedMethod3(boolean a, boolean b){
 
-        return 0;
+        int i = 1;
+
+        if(a)
+            i = i + 1;
+        if(b)
+            i = 5;
+        else
+            i = i - 1;
+
+        return 1/i;
     }
 
-    public int flawedMethod4(boolean a, boolean b){
-        return 0;
+    public void flawedMethod4(boolean a, boolean b){
+        // this is not possible
+        // path coverage covers all possible routes through the method, therefore this will include any, and all test
+        // suits  of 100% branch coverage
     }
 
 
