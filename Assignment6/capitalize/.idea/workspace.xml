@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="453fed10-cc18-4738-b91a-98fe825d39dc" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../../IndividualProject/capitalize/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../IndividualProject/capitalize/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../../IndividualProject/capitalize/src/edu/gatech/seclass/capitalize/Main.java" afterPath="$PROJECT_DIR$/../../IndividualProject/capitalize/src/edu/gatech/seclass/capitalize/Main.java" />
+      <change beforePath="$PROJECT_DIR$/../../IndividualProject/capitalize/test/edu/gatech/seclass/capitalize/MainTest.java" afterPath="$PROJECT_DIR$/../../IndividualProject/capitalize/test/edu/gatech/seclass/capitalize/MainTest.java" />
       <change beforePath="$PROJECT_DIR$/../../wheeloffortune/.gitignore" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../../wheeloffortune/.idea/gradle.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../../wheeloffortune/.idea/misc.xml" afterPath="" />
@@ -71,24 +74,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/capitalize/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
               <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="7" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MyMainTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/capitalize/MyMainTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="108" column="57" lean-forward="false" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -139,6 +130,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
@@ -163,14 +155,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="android.sdk-updates" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IndividualProject/capitalize" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -372,6 +363,7 @@
       <workItem from="1521077996070" duration="3030000" />
       <workItem from="1521158188417" duration="6252000" />
       <workItem from="1522892928346" duration="133000" />
+      <workItem from="1523066753982" duration="26000" />
     </task>
     <servers />
   </component>
@@ -393,10 +385,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9415000" />
+    <option name="totallyTimeSpent" value="9441000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2076" y="128" width="1922" height="1039" extended-state="6" />
+    <frame x="1920" y="-4" width="1920" height="1031" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -440,6 +432,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/capitalize/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/capitalize/MyMainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1728">
+          <caret line="108" column="57" lean-forward="false" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/capitalize/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/capitalize/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -531,14 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/capitalize/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/capitalize/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
@@ -551,11 +563,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/edu/gatech/seclass/capitalize/MyMainTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="108" column="57" lean-forward="false" selection-start-line="108" selection-start-column="57" selection-end-line="108" selection-end-column="57" />
+        <state relative-caret-position="1512">
+          <caret line="125" column="62" lean-forward="false" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/gatech/seclass/capitalize/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

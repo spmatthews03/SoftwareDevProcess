@@ -48,28 +48,80 @@ public class MyMainTest {
     }
 
 
-    private File createInputFile1() throws Exception {
-        File file1 =  createTmpFile();
-        FileWriter fileWriter = new FileWriter(file1);
-
-        fileWriter.write("Howdy Billy,\n" +
-                "I am going to take cs6300 and cs6400 next semester.\n" +
-                "Did you take cs 6300 last semester? I want to\n" +
-                "take 2 courses so that I will graduate Asap!");
-
-        fileWriter.close();
-        return file1;
-    }
-
     private File createInputFile2() throws Exception {
         File file2 =  createTmpFile();
         FileWriter fileWriter = new FileWriter(file2);
 
-        fileWriter.write("aaaaaa");
+        fileWriter.write("G4T3CH 0H Y3AH!");
 
         fileWriter.close();
         return file2;
     }
+
+    private File createInputFile3() throws Exception {
+        File file3 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file3);
+
+        fileWriter.write("I'm working really hard on this assignment,\n" +
+                "however I'm not sure how it is going to end up.\n" +
+                "We shall see when the grades come in!!!");
+
+        fileWriter.close();
+        return file3;
+    }
+
+    private File createInputFile4() throws Exception {
+        File file4 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file4);
+
+        fileWriter.write("hello there how is your day going today?");
+
+        fileWriter.close();
+        return file4;
+    }
+
+    private File createInputFile5() throws Exception {
+        File file5 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file5);
+
+        fileWriter.write("This one has two lines.\n" +
+                "see? Here is the second!");
+
+        fileWriter.close();
+        return file5;
+    }
+
+    private File createInputFile6() throws Exception {
+        File file5 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file5);
+
+        fileWriter.write("Here are some special characters\n" +
+                        "#oh#yeah#LETS#see!");
+
+        fileWriter.close();
+        return file5;
+    }
+    private File createInputFile7() throws Exception{
+        File file5 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file5);
+
+        fileWriter.write("Hello is a word that is made of letters and is 5 letters long");
+
+        fileWriter.close();
+        return file5;
+    }
+
+    private File createInputFile8() throws Exception {
+        File file4 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file4);
+
+        fileWriter.write("aaaaaaaaaaaaaaaaaaa");
+
+        fileWriter.close();
+        return file4;
+    }
+
+
 
 
 
@@ -93,16 +145,16 @@ Place all  of your tests in this class, optionally using MainTest.java as an exa
 // Frame #: 13
 @Test
 public void capitalizeTest1() throws Exception {
-    File inputFile1 = createInputFile1();
+    File inputFile1 = createInputFile4();
 
     String args[] = {inputFile1.getPath()};
     edu.gatech.seclass.capitalize.Main.main(args);
 
-    String expected1 = "Hello There How is your day going today?";
+    String expected1 = "Hello there how is your day going today?\n";
 
     String actual1 = getFileContent(inputFile1.getPath());
 
-    assertEquals("The files differ!", expected1, actual1);
+    assertEquals("The files are the same!", expected1, actual1);
 }
 
 
@@ -110,35 +162,32 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 14
     @Test
     public void capitalizeTest2() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-w", "'as'", inputFile1.getPath()};
+        String args[] = {"-w", "go", inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Checking this test as Well";
+        String expected1 = "hello there hoW is yoUr day gOing toDay?\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
-
-
-// Purpose: Present file with size of multiple lines, String with length 0, delimiter present in quotes no special characters with length more than one
-// Frame #: 17
+//
+//
+//// Purpose: Present file with size of multiple lines, String with length 0, delimiter present in quotes no special characters with length more than one
+//// Frame #: 17
     @Test
-    public void capitalizeTest3() throws Exception {
-        File inputFile1 = createInputFile1();
-
-        String args[] = {"-m","-w","'mul'",inputFile1.getPath()};
-        edu.gatech.seclass.capitalize.Main.main(args);
-
-        String expected1 = "Here's another Test!\n" +
-                "I have multiple lines and I want to test\n" +
-                "this and that.";
-
-        String actual1 = getFileContent(inputFile1.getPath());
-
-        assertEquals("The files differ!", expected1, actual1);
+    public void capitalizeTest3() throws IllegalArgumentException {
+        try {
+            File inputFile1 = createInputFile5();
+        }
+        catch(IllegalArgumentException e){
+            System.out.println("Illegal Argument");
+        }
+        catch(Exception e){
+            System.out.println("Exception");
+        }
     }
 
 
@@ -146,15 +195,15 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 19
     @Test
     public void capitalizeTest4() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-m","ss",inputFile1.getPath()};
+        String args[] = {"-m","ERE",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "This class is fun!";
+        String expected1 = "hello thERE how is your day going today?\n";
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -162,16 +211,16 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 2
     @Test
     public void capitalizeTest5() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-m","o",inputFile1.getPath()};
+        String args[] = {"-m","O",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Length of one for the string test.";
+        String expected1 = "hellO there hOw is yOur day gOing tOday?\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -179,16 +228,16 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 3
     @Test
     public void capitalizeTest6() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile2();
 
-        String args[] = {"-m","1",inputFile1.getPath()};
+        String args[] = {"-m","4",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Test for alphnumeric Letters like H3110!";
+        String expected1 = "G4T3CH 0H Y3AH!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!!", expected1, actual1);
     }
 
 
@@ -196,16 +245,17 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 7
     @Test
     public void capitalizeTest7() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile6();
 
         String args[] = {"-w","#",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Special # Characters # in & delimiter!";
+        String expected1 = "Here are some special characters\n" +
+                "#Oh#Yeah#LETS#See!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -213,16 +263,17 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 11
     @Test
     public void capitalizeTest8() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile5();
 
-        String args[] = {"-w","H",inputFile1.getPath()};
+        String args[] = {"-w","n",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "H What H is the H delimliHter?";
+        String expected1 = "This onE has two linEs.\n" +
+                "see? Here is the seconD!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -230,70 +281,69 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 22
     @Test
     public void capitalizeTest9() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile7();
 
-        String args[] = {"-m","'is'", inputFile1.getPath()};
+        String args[] = {"-m","IS", inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Hello is a word that is made of letters and is 5 letters long";
+        String expected1 = "Hello IS a word that IS made of letters and IS 5 letters long\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
-
-// Purpose:One line file, multiple length string, occurrence 1
-// Frame #: 31
+//
+//// Purpose:One line file, multiple length string, occurrence 1
+//// Frame #: 31
     @Test
     public void capitalizeTest10() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-m","is", inputFile1.getPath()};
+        String args[] = {"-m","HOW", inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Howdy this is a easy test";
+        String expected1 = "hello there HOW is your day going today?\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
-// Purpose: One line file, many occurence string, multiple length string, delimiter in quotes multiple length
+// Purpose: One line file, one occurence string, multiple length string, delimiter in quotes multiple length
 // Frame #:35
     @Test
     public void capitalizeTest11() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-m","dt","-w","'lm'",inputFile1.getPath()};
+        String args[] = {"-m","OW","-w","oa",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "a test of strings with dt and dt is 2 letters, the delimiter is lm, and its also 2 letters lm.";
+        String expected1 = "hello there hOW is yoUr daY goIng toDaY?\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
-// Purpose: Many lines file, length more than one string, one occurrence, elimiter with quotes length more than once
+// Purpose: Many lines file, length more than one string, one occurrence, delimiter with quotes length more than once
 // Frame #: 38
     @Test
     public void capitalizeTest12() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile3();
 
-        String args[] = {"-m","bad","-w","'wo'",inputFile1.getPath()};
+        String args[] = {"-m","ASSIGN","-w","ia",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Howdy There\n" +
-                "I have no idea what clas I'll be taking next, do you?\n" +
-                "I'm taking two right now but am not sure if I will do it again\n" +
-                "two classes isn't that bad, but 1 is a lot easier.";
+        String expected1 = "I'm workiNg reaLly haRd on thiS ASSIGNment,\n" +
+                "however I'm not sure how iT iS goiNg to end up.\n" +
+                "We shaLl see when the graDes come iN!!!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -301,19 +351,18 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 41
     @Test
     public void capitalizeTest13() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile3();
 
-        String args[] = {"-m","at","-w","'do'", inputFile1.getPath()};
+        String args[] = {"-m","IS","-w","sun", inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Howdy There\n" +
-                "I have no idea what clas I'll be taking next, do you?\n" +
-                "I'm taking two right now but am not sure if I will do it again\n" +
-                "two classes isn't that bad, but 1 is a lot easier.";
+        String expected1 = "I'm workinG really hard on thIS asSignMenT,\n" +
+                "however I'm nOt sUre how it IS goinG to enD uP.\n" +
+                "We sHall sEe when the grades come in!!!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -321,16 +370,16 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 6
     @Test
     public void capitalizeTest14() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile4();
 
-        String args[] = {"-m","a",inputFile1.getPath()};
+        String args[] = {"-m","z",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "Howdy this doesn't consist of the first letter";
+        String expected1 = "hello there how is your day going today?\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 
@@ -338,18 +387,224 @@ public void capitalizeTest1() throws Exception {
 // Frame #: 26
     @Test
     public void capitalizeTest15() throws Exception {
-        File inputFile1 = createInputFile1();
+        File inputFile1 = createInputFile3();
 
-        String args[] = {"-m","'es'","-w","'is'",inputFile1.getPath()};
+        String args[] = {"-m","I'M","-w","oa",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "This is the last test\n" +
-                "It is unsure how these tests will go\n" +
-                "I do know that this assignment is due tomorrow.";
+        String expected1 = "I'M woRking reaLly haRd oN this aSsignment,\n" +
+                "hoWever I'M noT sure hoW it is goIng to end up.\n" +
+                "We shaLl see when the graDes coMe in!!!\n";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
-        assertEquals("The files differ!", expected1, actual1);
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+
+    @Test
+    public void capitalizeTest16() throws Exception {
+        File inputFile1 = createInputFile4();
+
+        String args[] = {"-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "HELLO THERE HOW IS YOUR DAY GOING TODAY?\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest17() throws Exception {
+        File inputFile1 = createInputFile4();
+
+        String args[] = {"-w","o","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "HELLO THERE HOw IS YOuR DAY GOiNG TOdAY?\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest18() throws Exception {
+        File inputFile1 = createInputFile2();
+
+        String args[] = {"-w","A","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "g4t3ch 0h y3ah!\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest19() throws Exception, IllegalArgumentException {
+        File inputFile1 = createInputFile4();
+        try {
+            String args[] = {"-f", "-w", inputFile1.getPath()};
+        }
+        catch(IllegalArgumentException e){
+            System.out.println("Flip option must be the last option.");
+        }
+    }
+
+    @Test
+    public void capitalizeTest20() throws Exception {
+        File inputFile1 = createInputFile4();
+
+        String args[] = {"-w","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "HELLO tHERE hOW iS yOUR dAY gOING tODAY?\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest21() throws Exception {
+        File inputFile1 = createInputFile5();
+
+        String args[] = {"-m","THIS ONE hAS TwO","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "this one Has tWo LINES.\n" +
+                "SEE? hERE IS THE SECOND!\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest22() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-m","AAaa",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "AAaaAAaaAAaaAAaaaaa\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest23() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-w","a",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "aAaAaAaAaAaAaAaAaAa\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest24() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-w","A",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "aaaaaaaaaaaaaaaaaaa\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest25() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-m","AAAAaaaa","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "aaaaAAAAaaaaAAAAAAA\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest26() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-m","A","-w","a","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "aaaaaaaaaaaaaaaaaaa\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest27() throws Exception {
+        File inputFile1 = createInputFile8();
+
+        String args[] = {"-m","AaAaAa","-w","a","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "aAaAaAaAaAaAaAaAaAa\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest28() throws Exception {
+        File inputFile1 = createInputFile8();
+        try {
+            String args[] = {"-m", "-w", "-f", inputFile1.getPath()};
+        }
+        catch(IllegalArgumentException e){
+            System.out.println("Illegal Argument!");
+        }
+    }
+
+    @Test
+    public void capitalizeTest29() throws Exception {
+        File inputFile1 = createInputFile4();
+
+        String args[] = {"-m","HELLO tHERE hOW iS yOUR dAY gOING tODAY","-f",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "hello There How Is Your Day Going Today?\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
+    }
+
+    @Test
+    public void capitalizeTest30() throws Exception {
+        File inputFile1 = createInputFile4();
+
+        String args[] = {"-m","HELLO",inputFile1.getPath()};
+        edu.gatech.seclass.capitalize.Main.main(args);
+
+        String expected1 = "HELLO there how is your day going today?\n";
+
+        String actual1 = getFileContent(inputFile1.getPath());
+
+        assertEquals("The files are the same!", expected1, actual1);
     }
 
 }
