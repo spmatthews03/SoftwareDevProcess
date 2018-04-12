@@ -21,6 +21,7 @@ public class Main {
     private static List<String> fileContents;
     private static List<String> arguments;
     private static boolean FILE_EXISTS;
+    private static boolean PRINT_TO_FILE;
 
     public static void main(String[] args) {
 
@@ -32,7 +33,7 @@ public class Main {
         if(args.length > 0 && args.length <= 6){
             arguments = new ArrayList<>(Arrays.asList(args));
 
-            parseArgs(arguments);
+            parseArgs();
         }
         else{
             throw new IllegalArgumentException("Invalid Arguments");
@@ -53,6 +54,11 @@ public class Main {
         }
     }
 
+
+    /**
+     * method to compute which capitalize method should be used in the specified order
+     * @throws IOException
+     */
 
     private static void capitalize() throws IOException{
 
@@ -84,22 +90,58 @@ public class Main {
                             flipAll();
                         }
                         break;
+                    case "-i":
+                    case "-I":
+                        if(arguments.get(0).equals("-i") || arguments.get(0).equals("-I")) {
+                            changeAll(arguments.get(i));
+                        }
+                        break;
+                    case "-o":
                 }
             }
         }
     }
 
 
-    private static void parseArgs(List<String> args){
-        try {
-            if (fileExists(args.get(args.size() - 1))){
-                FILE_EXISTS = true;
-                file = args.get(args.size() - 1);
 
-                args.remove(args.size()-1);
+
+    /**
+     * Parses the arguments passed into the program
+     *
+     */
+
+    private static void parseArgs(){
+        PRINT_TO_FILE = true;
+
+        try {
+
+            // Parsing filename
+            if (fileExists(arguments.get(arguments.size() - 1))){
+                FILE_EXISTS = true;
+                file = arguments.get(arguments.size() - 1);
+
+                arguments.remove(arguments.size()-1);
             }
             else{
                 FILE_EXISTS = false;
+            }
+
+            // Parsing
+            for(int i = 0; i < arguments.size(); i++){
+                if(arguments.get(i).equals("-i") || arguments.get(i).equals("-I")){
+                    int index = arguments.indexOf(arguments.get(i));
+                    arguments.remove(index);
+                    arguments.add(0, arguments.get(i));
+                }
+                else if(arguments.get(i).equals("-o")){
+                    PRINT_TO_FILE = false;
+                }
+                else if(arguments.get(i).equals("-f")){
+                    int index = arguments.indexOf("-f");
+                    String tmp = arguments.get(i);
+                    arguments.remove(index);
+                    arguments.add(tmp);
+                }
             }
         }
         catch(FileNotFoundException e){
@@ -108,10 +150,20 @@ public class Main {
     }
 
 
+    /**
+     * print how to use the utility
+     */
     private static void usage() {
         System.err.println("Usage: Capitalize  [-w [string]] [-m string] [-f] <filename>");
     }
 
+
+
+    /**
+     * Capitalizes the letter directly after a delimiter
+     * @param delimiter
+     * @throws IOException
+     */
 
     private static void delimiterCapitilize(String delimiter) throws IOException{
         Path path = Paths.get(file);
@@ -145,6 +197,57 @@ public class Main {
     }
 
 
+    private static void changeAll(String arg) throws IOException{
+        if(Character.isLowerCase(arg.toCharArray()[0])){
+            allToLowerCase();
+        }
+        else{
+            allToUpperCase();
+        }
+    }
+
+
+    private static void allToLowerCase()throws IOException{
+        Path path = Paths.get(file);
+        List<String> content = new ArrayList<>();
+
+        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+
+            char[] chars = line.toCharArray();
+
+            for (int i = 0; i < chars.length; i++) {
+                char c = chars[i];
+                c = Character.toLowerCase(c);
+                chars[i] = c;
+            }
+            content.add(new String(chars));
+        }
+    }
+
+
+    private static void allToUpperCase() throws IOException{
+        Path path = Paths.get(file);
+        List<String> content = new ArrayList<>();
+
+        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+
+            char[] chars = line.toCharArray();
+
+            for (int i = 0; i < chars.length; i++) {
+                char c = chars[i];
+                c = Character.toUpperCase(c);
+                chars[i] = c;
+            }
+            content.add(new String(chars));
+        }
+    }
+
+
+    /**
+     * Capitilizes the matching string
+     * @param chars
+     * @throws IOException
+     */
     private static void stringCapitilize(String chars) throws IOException{
 
         Path path = Paths.get(file);
@@ -152,11 +255,34 @@ public class Main {
         List<String> toReplace =
                 lines.map(line -> line.replaceAll("(?i)"+ Pattern.quote(chars), chars))
                         .collect(Collectors.toList());
-        Files.write(path,toReplace);
+
+
+        printOut(path, toReplace);
 
         lines.close();
     }
 
+
+    private static void printOut(Path path, List<String> list)throws IOException{
+        if(PRINT_TO_FILE) {
+            Files.write(path, list);
+        }
+        else{
+            printToConsole(list);
+        }
+    }
+
+    private static void printToConsole(List<String> list){
+
+    }
+
+
+
+
+    /**
+     * Flips all characters to the other case
+     * @throws IOException
+     */
 
     private static void flipAll() throws IOException{
         Path path = Paths.get(file);
@@ -179,9 +305,18 @@ public class Main {
             content.add(new String(chars));
         }
 
-        Files.write(path, content);
+        if(PRINT_TO_FILE) {
+            Files.write(path, content);
+        }
+//        else{
+//            printOut(content);
+//        }
     }
 
+    /**
+     * Method for if there is no flags other than filename
+     * @throws IOException
+     */
 
     private static void noFlags() throws IOException{
         Path path = Paths.get(file);
@@ -191,9 +326,21 @@ public class Main {
             String newLine = line.substring(0,1).toUpperCase() + line.substring(1);
             content.add(newLine);
         }
-        Files.write(path, content);
+
+        if(PRINT_TO_FILE) {
+            Files.write(path, content);
+        }
+//        else{
+//            printOut(content);
+//        }
     }
 
+    /**
+     *
+     * @param filename
+     * @return
+     * @throws FileNotFoundException
+     */
 
     private static boolean fileExists(String filename) throws FileNotFoundException{
         File file = new File(filename);
