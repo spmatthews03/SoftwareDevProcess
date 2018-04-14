@@ -213,28 +213,27 @@ public class Main {
         List<String> content = new ArrayList<>();
         byte[] tmpArray = Files.readAllBytes(Paths.get(file));
         String tmpString = new String(tmpArray, "ISO-8859-1");
-        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r?\\n")));
+        char[] ch = tmpString.toCharArray();
 
 
+        for(int i = 0; i < ch.length; i++) {
+            char c = ch[i];
 
-        for (String line : list) {
-
-            char[] chars =  line.toCharArray();
-
-            for(int i = 0; i < line.length(); i++){
-                char c = chars[i];
-
-                for(int j = 0; j < delimiter.length(); j++){
-                    if(c == delimiter.charAt(j) && (i+1) != line.length()){
-                        chars[i+1] = Character.toUpperCase(chars[i+1]);
-                    }
-                    if(i == 0 && delimiter.equals(" ")){
-                        chars[i] = Character.toUpperCase(chars[i]);
-                    }
+            for (int j = 0; j < delimiter.length(); j++) {
+                if (c == delimiter.charAt(j) && (i + 1) != ch.length) {
+                    ch[i + 1] = Character.toUpperCase(ch[i + 1]);
+                }
+                if (i == 0 && delimiter.equals(" ")) {
+                    ch[i] = Character.toUpperCase(ch[i]);
+                }
+                if (!String.valueOf(ch[i]).matches(".")&& delimiter.equals(" ")) {
+                    if(i != ch.length-1)
+                        ch[i + 1] = Character.toUpperCase(ch[i+1]);
                 }
             }
-            content.add(new String(chars));
         }
+        content.add(new String(ch));
+
         printOut(path,content);
     }
 
@@ -255,22 +254,19 @@ public class Main {
 
         byte[] tmpArray = Files.readAllBytes(Paths.get(file));
         String tmpString = new String(tmpArray, "ISO-8859-1");
-        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r?\\n")));
+        char[] ch = tmpString.toCharArray();
 
 
-        for(String line : list) {
+        for(char letter : ch) {
 
-            char[] chars = line.toCharArray();
-
-            for (int i = 0; i < chars.length; i++) {
-                char c = chars[i];
+            for (int i = 0; i < ch.length; i++) {
+                char c = ch[i];
                 c = Character.toLowerCase(c);
-                chars[i] = c;
+                ch[i] = c;
             }
-            content.add(new String(chars));
         }
+        content.add(new String(ch));
         printOut(path,content);
-
     }
 
 
@@ -280,22 +276,18 @@ public class Main {
 
         byte[] tmpArray = Files.readAllBytes(Paths.get(file));
         String tmpString = new String(tmpArray, "ISO-8859-1");
-        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n?")));
+        char[] ch = tmpString.toCharArray();
 
 
+        for(char letter : ch) {
 
-        for(String line : list) {
-
-            char[] chars = line.toCharArray();
-
-            for (int i = 0; i < chars.length; i++) {
-                char c = chars[i];
+            for (int i = 0; i < ch.length; i++) {
+                char c = ch[i];
                 c = Character.toUpperCase(c);
-                chars[i] = c;
+                ch[i] = c;
             }
-            content.add(new String(chars));
         }
-
+        content.add(new String(ch));
         printOut(path,content);
     }
 
@@ -309,6 +301,7 @@ public class Main {
 
         byte[] tmpArray = Files.readAllBytes(Paths.get(file));
         String tmpString = new String(tmpArray, "ISO-8859-1");
+        char[] ch = tmpString.toCharArray();
         List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n")));
 
         Path path = Paths.get(file);
@@ -317,7 +310,18 @@ public class Main {
                 lines.map(line -> line.replaceAll("(?i)"+ Pattern.quote(chars), chars))
                         .collect(Collectors.toList());
 
-        printOut(path,toReplace);
+
+
+        StringBuilder builder = new StringBuilder();
+        for(String word : toReplace){
+            builder.append(word);
+        }
+        char[] charArray = builder.toString().toCharArray();
+
+
+        List<String> content = new ArrayList<>();
+        content.add(new String(charArray));
+        printOut(path,content);
         lines.close();
     }
 
@@ -383,13 +387,19 @@ public class Main {
 
         byte[] tmpArray = Files.readAllBytes(Paths.get(file));
         String tmpString = new String(tmpArray, "ISO-8859-1");
-        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n")));
+        char[] ch = tmpString.toCharArray();
 
-        for(String line : list){
-            String newLine = line.substring(0,1).toUpperCase() + line.substring(1);
-            content.add(newLine);
+        for(int i = 0; i < ch.length; i++){
+            if(!String.valueOf(ch[i]).matches(".")){
+                if(i != ch.length -1) {
+                    ch[i+1] = Character.toUpperCase(ch[i+1]);
+                }
+            }
+            if(i == 0){
+                ch[i] = Character.toUpperCase(ch[i]);
+            }
         }
-
+        content.add(new String(ch));
         printOut(path,content);
     }
 
