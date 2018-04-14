@@ -463,7 +463,7 @@ public void capitalizeTest1() throws Exception {
         String args[] = {"-w","-f",inputFile1.getPath()};
         edu.gatech.seclass.capitalize.Main.main(args);
 
-        String expected1 = "HELLO tHERE hOW iS yOUR dAY gOING tODAY?";
+        String expected1 = "hELLO tHERE hOW iS yOUR dAY gOING tODAY?";
 
         String actual1 = getFileContent(inputFile1.getPath());
 
