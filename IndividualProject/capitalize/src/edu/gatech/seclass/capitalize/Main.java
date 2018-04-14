@@ -4,6 +4,8 @@ import com.sun.javaws.exceptions.InvalidArgumentException;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.nio.Buffer;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,10 +16,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 
 public class Main {
 
     private static String file;
+    private static File actualFile;
     private static List<String> fileContents;
     private static List<String> arguments;
     private static boolean FILE_EXISTS;
@@ -52,6 +59,8 @@ public class Main {
 
             if (FILE_EXISTS) {
                 fileContents = new ArrayList<>();
+                actualFile = new File(file);
+
                 capitalize();
             }
         }
@@ -145,7 +154,7 @@ public class Main {
                     PRINT_TO_FILE = false;
                     Path path = Paths.get(file);
                     originalContents = new ArrayList<>();
-                    originalContents = Files.readAllLines(path, StandardCharsets.UTF_8);
+                    originalContents = Files.readAllLines(path, Charset.defaultCharset());
 
                 }
                 else if(arguments.get(i).equals("-f")){
@@ -202,9 +211,13 @@ public class Main {
     private static void delimiterCapitilize(String delimiter) throws IOException{
         Path path = Paths.get(file);
         List<String> content = new ArrayList<>();
-        boolean endOfLineDelimiter = false;
+        byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+        String tmpString = new String(tmpArray, "ISO-8859-1");
+        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r?\\n")));
 
-        for (String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+
+
+        for (String line : list) {
 
             char[] chars =  line.toCharArray();
 
@@ -240,7 +253,12 @@ public class Main {
         Path path = Paths.get(file);
         List<String> content = new ArrayList<>();
 
-        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+        byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+        String tmpString = new String(tmpArray, "ISO-8859-1");
+        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r?\\n")));
+
+
+        for(String line : list) {
 
             char[] chars = line.toCharArray();
 
@@ -260,7 +278,13 @@ public class Main {
         Path path = Paths.get(file);
         List<String> content = new ArrayList<>();
 
-        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
+        byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+        String tmpString = new String(tmpArray, "ISO-8859-1");
+        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n?")));
+
+
+
+        for(String line : list) {
 
             char[] chars = line.toCharArray();
 
@@ -283,8 +307,12 @@ public class Main {
      */
     private static void stringCapitilize(String chars) throws IOException{
 
+        byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+        String tmpString = new String(tmpArray, "ISO-8859-1");
+        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n")));
+
         Path path = Paths.get(file);
-        Stream<String> lines = Files.lines(path);
+        Stream<String> lines = list.stream();
         List<String> toReplace =
                 lines.map(line -> line.replaceAll("(?i)"+ Pattern.quote(chars), chars))
                         .collect(Collectors.toList());
@@ -316,29 +344,33 @@ public class Main {
      * @throws IOException
      */
 
-    private static void flipAll() throws IOException{
-        Path path = Paths.get(file);
+    public static void flipAll() throws IOException{
         List<String> content = new ArrayList<>();
+        try{
+            byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+            String tmpString = new String(tmpArray, "ISO-8859-1");
+            char[] ch = tmpString.toCharArray();
 
-        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)) {
-
-
-            char[] chars = line.toCharArray();
-
-            for (int i = 0; i < chars.length; i++) {
-                char c = chars[i];
+            for (int i = 0; i < ch.length; i++) {
+                char c = ch[i];
                 if (Character.isUpperCase(c)) {
                     c = Character.toLowerCase(c);
                 } else if (Character.isLowerCase(c)) {
                     c = Character.toUpperCase(c);
                 }
-                chars[i] = c;
+                ch[i] = c;
             }
-            content.add(new String(chars));
+            content.add(new String(ch));
+            printOut(Paths.get(file),content);
+
+        }
+        catch(IOException e){
+            System.out.println(e);
         }
 
-        printOut(path,content);
+
     }
+
 
     /**
      * Method for if there is no flags other than filename
@@ -349,7 +381,11 @@ public class Main {
         Path path = Paths.get(file);
         List<String> content = new ArrayList<>();
 
-        for(String line : Files.readAllLines(path, StandardCharsets.UTF_8)){
+        byte[] tmpArray = Files.readAllBytes(Paths.get(file));
+        String tmpString = new String(tmpArray, "ISO-8859-1");
+        List<String> list = new ArrayList<>(Arrays.asList(tmpString.split("\\r\\n?\\r?\\n")));
+
+        for(String line : list){
             String newLine = line.substring(0,1).toUpperCase() + line.substring(1);
             content.add(newLine);
         }

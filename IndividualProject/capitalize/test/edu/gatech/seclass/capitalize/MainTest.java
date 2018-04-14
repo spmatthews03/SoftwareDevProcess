@@ -324,7 +324,7 @@ public class MainTest {
 //
 //        assertEquals("The files differ!", expected, actual);
 //    }
-
+//
 //    // Purpose: Additional D2 Test
     @Test
     public void mainTest10() throws Exception {
@@ -463,8 +463,8 @@ public class MainTest {
 //        assertEquals("The file was changed!", expected, actual);
 //        assertEquals("Usage: Capitalize  [-w [string]] [-m string] [-f] [-i|-I] [-o] <filename>", errStream.toString().trim());
 //    }
-////
-////    // Purpose: Additional D2 Test
+//
+//    // Purpose: Additional D2 Test
     @Test
     public void mainTest18() throws Exception {
         File inputFile6 = createInputFile6();
@@ -481,8 +481,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-//
-//    // Purpose: Additional D2 Test
+
+    // Purpose: Additional D2 Test
 //    @Test
 //    public void mainTest19() throws Exception {
 //        File inputFile1 = createInputFile1();
@@ -499,26 +499,26 @@ public class MainTest {
 //
 //        assertEquals("The files differ!", expected, actual);
 //    }
+////
+////    // Purpose: Additional D2 Test
+//    @Test
+//    public void mainTest20() throws Exception {
+//        File inputFile3 = createInputFile3();
 //
-//    // Purpose: Additional D2 Test
-    @Test
-    public void mainTest20() throws Exception {
-        File inputFile3 = createInputFile3();
-
-        String args[] = {"-f", "-f", "-f", inputFile3.getPath()};
-        Main.main(args);
-
-        String expected = "hOWDY bILLY,\n" +
-                "i AM GOING TO TAKE CS6300 AND CS6400 NEXT SEMESTER.\r\n" +
-                "dID YOU TAKE CS 6300 LAST SEMESTER? i WANT TO\r" +
-                "TAKE 2 COURSES SO THAT i WILL GRADUATE aSAP!";
-
-        String actual = getFileContent(inputFile3.getPath());
-
-        assertEquals("The files differ!", expected, actual);
-    }
+//        String args[] = {"-f", "-f", "-f", inputFile3.getPath()};
+//        Main.main(args);
 //
-//    // Purpose: Additional D2 Test
+//        String expected = "hOWDY bILLY,\n" +
+//                "i AM GOING TO TAKE CS6300 AND CS6400 NEXT SEMESTER.\r\n" +
+//                "dID YOU TAKE CS 6300 LAST SEMESTER? i WANT TO\r" +
+//                "TAKE 2 COURSES SO THAT i WILL GRADUATE aSAP!";
+//
+//        String actual = getFileContent(inputFile3.getPath());
+//
+//        assertEquals("The files differ!", expected, actual);
+//    }
+////
+////    // Purpose: Additional D2 Test
 //    @Test
 //    public void mainTest21() throws Exception {
 //        File inputFile1 = createInputFile1();
