@@ -324,7 +324,7 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-
+//
 //    // Purpose: Additional D2 Test
     @Test
     public void mainTest10() throws Exception {
@@ -417,8 +417,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-//
-//    // Purpose: Additional D2 Test
+////
+////    // Purpose: Additional D2 Test
     @Test
     public void mainTest15() throws Exception {
         File inputFile6 = createInputFile6();
@@ -435,8 +435,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-//
-//    // Purpose: Additional D2 Test
+////
+////    // Purpose: Additional D2 Test
     @Test
     public void mainTest16() throws Exception {
         String args[] = {"nofile.txt"};
@@ -481,8 +481,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-
-    // Purpose: Additional D2 Test
+//
+//    // Purpose: Additional D2 Test
     @Test
     public void mainTest19() throws Exception {
         File inputFile1 = createInputFile1();
@@ -499,8 +499,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-
-    // Purpose: Additional D2 Test
+//
+//    // Purpose: Additional D2 Test
     @Test
     public void mainTest20() throws Exception {
         File inputFile3 = createInputFile3();
@@ -517,8 +517,8 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-
-    // Purpose: Additional D2 Test
+//
+//    // Purpose: Additional D2 Test
     @Test
     public void mainTest21() throws Exception {
         File inputFile1 = createInputFile1();
@@ -600,7 +600,4 @@ public class MainTest {
 
         assertEquals("The files differ!", expected, actual);
     }
-
-
-
 }
