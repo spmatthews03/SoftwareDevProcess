@@ -231,7 +231,25 @@ public class MyMainTest {
         return file1;
     }
 
+    private File createInputFile18() throws Exception {
+        File file1 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file1);
 
+        fileWriter.write("");
+
+        fileWriter.close();
+        return file1;
+    }
+
+    private File createInputFile19() throws Exception {
+        File file1 =  createTmpFile();
+        FileWriter fileWriter = new FileWriter(file1);
+
+        fileWriter.write("/..");
+
+        fileWriter.close();
+        return file1;
+    }
 
 
     private String getFileContent(String filename) {
@@ -424,6 +442,7 @@ public void capitalizeTest1() throws Exception {
 // Purpose: One line file, one occurence string, multiple length string, delimiter in quotes multiple length
 // Frame #:35
 		// Type C
+		// <capitlizes the first letter even though there are specified arguments>
     @Test
     public void capitalizeTest11() throws Exception {
         File inputFile1 = createInputFile4();
@@ -612,6 +631,8 @@ public void capitalizeTest1() throws Exception {
     }
 
 		// Type C
+		// <capitlizes the first letter even though there are specified arguments, which led to 
+		// the wrong order of camel case>
     @Test
     public void capitalizeTest23() throws Exception {
         File inputFile1 = createInputFile8();
@@ -789,8 +810,8 @@ public void capitalizeTest1() throws Exception {
         assertEquals("The files differ!", expected1, actual1);
     }
 
-//    // Purpose: To provide an example of a test case format
-//    // Frame #: Instructor example 2 from assignment directions
+    // Purpose: To provide an example of a test case format
+    // Frame #: Instructor example 2 from assignment directions
     @Test
     public void capitalizeTest35() throws Exception {
         File inputFile1 = createInputFile9();
@@ -898,7 +919,7 @@ public void capitalizeTest1() throws Exception {
         Main.main(args);
         assertEquals("Usage: Capitalize  [-w [string]] [-m string] [-f] [-i|-I] [-o] <filename>", errStream.toString().trim());
     }
-//
+////
 ////     Purpose: Additional D2 Test
     @Test
     public void capitalizeTest42() throws Exception {
@@ -1148,7 +1169,7 @@ public void capitalizeTest1() throws Exception {
         assertEquals("The files differ!", expected, actual);
     }
 
-    // Purpose: Additional D2 Test
+//    // Purpose: Additional D2 Test
     @Test
     public void capitalizeTest56() throws Exception {
         File inputFile9 = createInputFile17();
@@ -1178,27 +1199,42 @@ public void capitalizeTest1() throws Exception {
         assertEquals("The files differ!", expected, actual);
     }
 
-    // Purpose: Additional D2 Test
+
+
     @Test
     public void capitalizeTest58() throws Exception {
         File inputFile2 = createInputFile10();
 
-        String args[] = {"-w", "-f", inputFile2.getPath()};
+        String args[] = {"-o",inputFile2.getPath()};
         Main.main(args);
 
-        String expected = "aAAAAA";
+        String expected = "aaaaaa";
 
         String actual = getFileContent(inputFile2.getPath());
 
         assertEquals("The files differ!", expected, actual);
     }
-
 
     @Test
     public void capitalizeTest59() throws Exception {
         File inputFile2 = createInputFile10();
 
-        String args[] = {inputFile2.getPath(), "-f"};
+        String args[] = {};
+        Main.main(args);
+
+        String expected = "aaaaaa";
+
+        String actual = getFileContent(inputFile2.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+    }
+
+
+    @Test
+    public void capitalizeTest60() throws Exception {
+        File inputFile2 = createInputFile10();
+
+        String args[] = {"-m","A","-w","-m","T",inputFile2.getPath()};
         Main.main(args);
 
         String expected = "aAAAAA";
@@ -1208,5 +1244,65 @@ public void capitalizeTest1() throws Exception {
         assertEquals("The files differ!", expected, actual);
     }
 
+
+    @Test
+    public void capitalizeTest61() throws Exception {
+        File inputFile2 = createInputFile10();
+
+        String args[] = {"-w","-w","A",inputFile2.getPath()};
+        Main.main(args);
+
+        String expected = "aaaaaa";
+
+        String actual = getFileContent(inputFile2.getPath());
+
+        assertEquals("The files differ!", expected, actual);
+    }
+
+
+   @Test
+   public void capitalizeTest62() throws Exception {
+       File inputFile1 = createInputFile10();
+
+       String args[] = { "-w", "H", "-w", "-m", "-o", inputFile1.getPath()};
+       Main.main(args);
+
+       String expected1 = "aaaaaa";
+
+       String actual1 = getFileContent(inputFile1.getPath());
+
+       assertEquals("The files differ!", expected1, actual1);
+   }
+
+   @Test
+   public void capitalizeTes63() throws Exception {
+       File inputFile1 = createInputFile19();
+
+       String args[] = { "-w","-i","-I", inputFile1.getPath()};
+       Main.main(args);
+
+       String expected1 = "/..";
+
+       String actual1 = getFileContent(inputFile1.getPath());
+
+       assertEquals("File Not Found", errStream.toString().trim());
+   }
+
+	// Type D
+	// <Can't handle a filename without .txt>
+	// commenting out to continue tests
+//   @Test
+//   public void capitalizeTes63() throws Exception {
+//       File inputFile1 = createInputFile19();
+
+//       String args[] = { "-w","-i","-I", "file"};
+//       Main.main(args);
+
+//       String expected1 = "/..";
+
+//       String actual1 = getFileContent(inputFile1.getPath());
+
+//       assertEquals("File Not Found", errStream.toString().trim());
+//   }
 
 }
